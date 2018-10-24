@@ -92,7 +92,20 @@ window.onload = () => {
     document.body.appendChild(stopCheckbox);
   };
 
+  const createRefreshButton = () => {
+    const refreshButton = document.createElement('button');
+    refreshButton.innerText = 'Refresh!';
+    refreshButton.onclick = () => {
+      const prevContainer = document.getElementById(containerId);
+      document.body.removeChild(prevContainer);
+      const newContainer = createInitialContainer(width, height);
+      document.body.appendChild(newContainer);
+    };
+    document.body.appendChild(refreshButton);
+  };
+
   createStopUI();
+  createRefreshButton();
   const container = createInitialContainer(width, height);
   document.body.appendChild(container);
   setInterval(update, 100);
